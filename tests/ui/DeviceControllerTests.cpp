@@ -80,6 +80,26 @@ private slots:
         QTRY_COMPARE_WITH_TIMEOUT(controller.noiseControlMode(),QString("ambient"),1000);
         QCOMPARE(controller.ambientLevel(),12);
     }
+    void ambientSelectionSurvivesAncAndOff() {
+        auto transport = std::make_shared<ReplyTransport>();
+        auto service = std::make_shared<core::DeviceService>(transport);
+        service->connect(transport::DeviceAddress("11:22:33:44:55:66"), "WH-1000XM5");
+        DeviceCenterController controller(nullptr, service);
+        QTRY_VERIFY_WITH_TIMEOUT(!controller.busy(), 2000);
+        QCOMPARE(controller.noiseControlMode(), QString("cancelling"));
+        QCOMPARE(controller.ambientLevel(), 10);
+        controller.setAmbient(controller.ambientLevel(), false);
+        QTRY_VERIFY_WITH_TIMEOUT(!controller.busy(), 2000);
+        QVERIFY(controller.lastError().isEmpty());
+        transport->notify({0x69,0x17,1,1,1,0,12});
+        QTRY_COMPARE_WITH_TIMEOUT(controller.ambientLevel(), 12, 1000);
+        transport->notify({0x69,0x17,1,1,0,0,0});
+        QTRY_COMPARE_WITH_TIMEOUT(controller.noiseControlMode(), QString("cancelling"), 1000);
+        QCOMPARE(controller.ambientLevel(), 12);
+        transport->notify({0x69,0x17,1,0,0,0,0});
+        QTRY_COMPARE_WITH_TIMEOUT(controller.noiseControlMode(), QString("off"), 1000);
+        QCOMPARE(controller.ambientLevel(), 12);
+    }
     void destructionDrainsWorkerAndCallbacks() {
         auto service = std::make_shared<SlowService>();
         auto controller = std::make_unique<DeviceCenterController>(nullptr,service);

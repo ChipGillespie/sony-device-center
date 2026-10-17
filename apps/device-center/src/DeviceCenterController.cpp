@@ -78,7 +78,12 @@ void DeviceCenterController::_applySnapshot(const QByteArray& data) {
     _isCharging = _connected && battery.value("charging").toBool();
     const auto nc = s.value("noiseControl").toObject();
     _noiseControlMode = _connected && valid("noiseControl") ? nc.value("mode").toString() : "unknown";
-    _ambientLevel = nc.value("ambientLevel").toInt(); _focusOnVoice = nc.value("focusOnVoice").toBool();
+    // ANC/Off reports level zero. Keep a usable Ambient selection for the
+    // mode buttons, which must send a level in the protocol's 1–20 range.
+    const int ambientLevel = nc.value("ambientLevel").toInt();
+    if (_connected && valid("noiseControl") && ambientLevel >= 1 && ambientLevel <= 20)
+        _ambientLevel = ambientLevel;
+    _focusOnVoice = nc.value("focusOnVoice").toBool();
     const auto eq = s.value("equalizer").toObject();
     _equalizerPreset = valid("equalizer") ? eq.value("preset").toInt() : -1;
     _equalizerPresetName = valid("equalizer") ? eq.value("presetName").toString() : "Unknown";
