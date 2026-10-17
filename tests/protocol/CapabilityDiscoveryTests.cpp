@@ -28,7 +28,7 @@ TEST_CASE("CapabilityDiscovery: known devices resolve immediately via registry w
     REQUIRE(caps.equalizer == true);
     REQUIRE(caps.dsee == true);
     REQUIRE(caps.speakToChat == true);
-    REQUIRE(caps.adaptiveVolume == true);
+    REQUIRE(caps.adaptiveVolume == false);
     REQUIRE(caps.multipoint == true);
 
     // ZERO frames sent because no probing was needed!

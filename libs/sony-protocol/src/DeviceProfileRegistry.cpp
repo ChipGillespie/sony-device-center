@@ -66,7 +66,9 @@ const std::vector<DeviceProfile>& getStaticProfiles() {
                 .multipoint = true
             }
         },
-        // WH-1000XM5 (V2 protocol, Full capability set)
+        // WH-1000XM5: Sony's compatibility table excludes Adaptive Volume
+        // Control (distinct from Adaptive Sound Control). Its query is ACKed
+        // but receives no setting response on firmware 2.5.1.
         DeviceProfile{
             .model = SonyModel::WH1000XM5,
             .protocol = SonyProtocolVersion::V2,
@@ -81,7 +83,7 @@ const std::vector<DeviceProfile>& getStaticProfiles() {
                 .tenBandEqualizer = false,
                 .dsee = true,
                 .speakToChat = true,
-                .adaptiveVolume = true,
+                .adaptiveVolume = false,
                 .autoPowerOff = true,
                 .firmwareInfo = true,
                 .codecInfo = true,

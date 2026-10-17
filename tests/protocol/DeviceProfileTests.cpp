@@ -73,7 +73,7 @@ TEST_CASE("DeviceProfileRegistry: provides immediate capabilities for known mode
         REQUIRE(profile->capabilities.clearBass == true);
         REQUIRE(profile->capabilities.dsee == true);
         REQUIRE(profile->capabilities.speakToChat == true);
-        REQUIRE(profile->capabilities.adaptiveVolume == true);
+        REQUIRE(profile->capabilities.adaptiveVolume == false);
         REQUIRE(profile->capabilities.autoPowerOff == true);
         REQUIRE(profile->capabilities.firmwareInfo == true);
         REQUIRE(profile->capabilities.codecInfo == true);
