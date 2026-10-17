@@ -545,3 +545,6 @@ Client/resources/devices/output/
 
 # Local instrumented CMake builds
 /build-*/
+
+# Machine-specific setup notes and private hardware diagnostics
+/LOCAL_SETUP.md

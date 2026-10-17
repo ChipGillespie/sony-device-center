@@ -2,6 +2,16 @@
 
 # Sony Device Center
 
+This is [ChipGillespie's public fork](https://github.com/ChipGillespie/sony-device-center)
+of [marconvcm/sony-device-center](https://github.com/marconvcm/sony-device-center).
+It preserves the upstream application and history, with two fixes tested on
+**Omarchy Linux and WH-1000XM5 firmware 2.5.1**: remembering a usable Ambient
+Sound level when leaving ANC, and correcting unsupported Adaptive Volume Control.
+See the [Omarchy / Arch build guide and hardware results](docs/omarchy-wh1000xm5.md).
+The upstream feature list and model reports below cover a wider scope than this
+fork's local hardware testing. Existing releases and screenshots describe the
+upstream project unless explicitly marked otherwise.
+
 **An open-source desktop suite and C++20 SDK for Sony headphones and earbuds — Ambient Sound, Noise Cancelling, Equalizer, Clear Bass, DSEE, battery monitoring, and device control, without needing a mobile phone.**
 
 ---
@@ -54,9 +64,9 @@ real hardware.
 | :--- | :---: | :--- | :--- |
 | **WH-1000XM5** | V2 | ✅ Verified | Maintainer's device |
 | **WH-1000XM3** | V1 | ✅ Verified | Maintainer's device |
-| **WH-1000XM6** | V2 | ⚠️ Partially working | 10-band EQ verified by the contributor on firmware 3.1.5 ([#44](../../pull/44)); noise-control readback remains unresolved, battery intermittent ([#11](../../issues/11)) |
+| **WH-1000XM6** | V2 | ⚠️ Partially working | 10-band EQ verified by the contributor on firmware 3.1.5 ([#44](https://github.com/marconvcm/sony-device-center/pull/44)); noise-control readback remains unresolved, battery intermittent ([#11](https://github.com/marconvcm/sony-device-center/issues/11)) |
 | **WF-1000XM6** | V2 | ✅ Verified | Community report |
-| **MDR-1000X** | V1 | ❌ Known broken | Shows as disconnected, no controls work ([#12](../../issues/12)) |
+| **MDR-1000X** | V1 | ❌ Known broken | Shows as disconnected, no controls work ([#12](https://github.com/marconvcm/sony-device-center/issues/12)) |
 | **WH-1000XM4** | V1 | ✅ Verified | Community report (firmware 3.0.1, Windows): battery, noise control readback, EQ + Clear Bass, firmware, codec. Speak-to-Chat on/off verified (Standard ~30s timeout; 15s / 1 min / do-not-close UI is a nice-to-have). |
 | WF-1000XM5, WF-1000XM4 | V2 | 🟡 Untested | TWS battery reporting unverified |
 | WH-CH720N, ULT WEAR, LinkBuds S, WF-C700N | V2 | 🟡 Untested | |
@@ -72,7 +82,7 @@ been re-tested since. Model-specific XM6 protocol
 failures still need hardware verification. See [IPC and connection lifecycle](docs/ipc-and-lifecycle.md).
 
 Running something not listed, or listed as untested? Please
-[open a report](../../issues/new) with your model, firmware version and what worked —
+[open a report](https://github.com/marconvcm/sony-device-center/issues/new) with your model, firmware version and what worked —
 that is the only way this table improves. `sonyctl -v info` output is ideal.
 
 ---
@@ -168,7 +178,7 @@ for signing setup.
 #### macOS launch warnings
 
 The v0.1.5 release is ad-hoc signed and has not been notarized by Apple
-([#57](../../issues/57)). If macOS says Apple could not verify that Sony Device
+([#57](https://github.com/marconvcm/sony-device-center/issues/57)). If macOS says Apple could not verify that Sony Device
 Center is free of malware, only continue if you trust the downloaded release.
 
 1. Copy **Sony Device Center.app** from the DMG into **Applications**.
